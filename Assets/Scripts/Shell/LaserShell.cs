@@ -9,11 +9,18 @@ namespace Cubechero.Shell
         [SerializeField] private float damage;
         [SerializeField] private LayerMask damageMask;
 
-        public override void OnSpawned(Vector3 position, Quaternion rotation, IMemoryPool pool)
+        public override void OnSpawned(Vector3 velocity, Vector3 position, Quaternion rotation, IMemoryPool pool)
         {
-            base.OnSpawned(position, rotation, pool);
+            base.OnSpawned(velocity, position, rotation, pool);
 
-            RBody.velocity = transform.forward * speed;
+            RBody.velocity = velocity;
+        }
+
+        public override void OnDespawned()
+        {
+            base.OnDespawned();
+            
+            RBody.velocity = Vector3.zero;
         }
 
         protected override void OnCollisionEnter(Collision other)
@@ -25,7 +32,7 @@ namespace Cubechero.Shell
             base.OnCollisionEnter(other);
         }
 
-        public class Factory : PlaceholderFactory<Vector3, Quaternion, LaserShell>
+        public class Factory : PlaceholderFactory<Vector3, Vector3, Quaternion, LaserShell>
         {
         }
     }

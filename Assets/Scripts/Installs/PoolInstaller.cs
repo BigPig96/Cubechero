@@ -10,11 +10,16 @@ namespace Cubechero.Installs
     {
         public override void InstallBindings()
         {
-            Container.BindFactory<Vector3, Quaternion, LaserShell, LaserShell.Factory>()
+            Container.BindFactory<Vector3, Vector3, Quaternion, LaserShell, LaserShell.Factory>()
                 .FromMonoPoolableMemoryPool(
                     x => x.WithInitialSize(10)
                         .FromComponentInNewPrefabResource("Shells/LaserShell")
                         .UnderTransformGroup("LaserShells"));
+            Container.BindFactory<Vector3, Vector3, Quaternion, BombShell, BombShell.Factory>()
+                .FromMonoPoolableMemoryPool(
+                    x => x.WithInitialSize(10)
+                        .FromComponentInNewPrefabResource("Shells/BombShell")
+                        .UnderTransformGroup("BombShells"));
             Container.BindFactory<Vector3, Quaternion, PatrolEnemy, PatrolEnemy.Factory>()
                 .FromMonoPoolableMemoryPool(
                     x => x.WithInitialSize(10)

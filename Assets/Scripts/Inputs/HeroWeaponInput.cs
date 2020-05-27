@@ -9,8 +9,6 @@ namespace Cubechero.Inputs
         private readonly UnitLocator _locator;
         private readonly Transform _transform;
 
-        private Vector3 _lastClosestDirection;
-
         private HeroWeaponInput(IMovementInput movementInput, UnitLocator locator, Transform transform)
         {
             _movementInput = movementInput;
@@ -22,25 +20,25 @@ namespace Cubechero.Inputs
         {
             if (_movementInput.MoveDirection() != Vector3.zero) return false;
 
-            _lastClosestDirection = _locator.GetClosestDirection();
-            
-            return _lastClosestDirection != Vector3.zero
-                   && IsHeroLookToEnemy();
+            var closestTarget = _locator.GetClosestCollider();
+
+            return closestTarget != null
+                   && IsHeroLookToTarget();
         }
 
         public bool PreviousWeapon()
         {
-            return false;
+            return Input.GetKeyDown(KeyCode.Q);
         }
 
         public bool NextWeapon()
         {
-            return false;
+            return Input.GetKeyDown(KeyCode.E);
         }
 
-        private bool IsHeroLookToEnemy()
+        private bool IsHeroLookToTarget()
         {
-            return Vector3.Dot(_transform.forward, _lastClosestDirection) > 0.99f;
+            return Vector3.Dot(_transform.forward, _locator.GetClosestDirection()) > 0.99f;
         }
     }
 }

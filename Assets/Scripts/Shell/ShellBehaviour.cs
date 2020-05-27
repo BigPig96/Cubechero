@@ -6,12 +6,11 @@ using Zenject;
 namespace Cubechero.Shell
 {
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class ShellBehaviour : MonoBehaviour, IPoolable<Vector3, Quaternion, IMemoryPool>, IDisposable
+    public abstract class ShellBehaviour : MonoBehaviour, IPoolable<Vector3, Vector3, Quaternion, IMemoryPool>, IDisposable
     {
         private IMemoryPool _pool;
         
         [SerializeField] protected float lifetime;
-        [SerializeField] protected float speed;
 
         protected Rigidbody RBody;
         
@@ -38,7 +37,7 @@ namespace Cubechero.Shell
             _pool = null;
         }
 
-        public virtual void OnSpawned(Vector3 position, Quaternion rotation, IMemoryPool pool)
+        public virtual void OnSpawned(Vector3 velocity, Vector3 position, Quaternion rotation, IMemoryPool pool)
         {
             _pool = pool;
             transform.SetPositionAndRotation(position, rotation);
@@ -47,6 +46,7 @@ namespace Cubechero.Shell
 
         public void Dispose()
         {
+            _destruction.Dispose();
             _pool?.Despawn(this);
         }
     }

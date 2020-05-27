@@ -25,13 +25,10 @@ namespace Cubechero
             _locatorRadius = data.locateRadius;
         }
 
-        public Vector3 GetClosestDirection()
+        public Collider GetClosestCollider()
         {
             var originPos = _transform.position;
-            if (_locateTimer < _locateDelay)
-                return _lastClosestCollider != null
-                    ? (_lastClosestCollider.transform.position - originPos).normalized
-                    : Vector3.zero;
+            if (_locateTimer < _locateDelay) return _lastClosestCollider;
             
             _locateTimer = 0;
             
@@ -55,8 +52,13 @@ namespace Cubechero
 
             _lastClosestCollider = target;
 
+            return _lastClosestCollider;
+        }
+
+        public Vector3 GetClosestDirection()
+        {
             return _lastClosestCollider != null
-                ? (_lastClosestCollider.transform.position - originPos).normalized
+                ? (_lastClosestCollider.transform.position - _transform.position).normalized
                 : Vector3.zero;
         }
 

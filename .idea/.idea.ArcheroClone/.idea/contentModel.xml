@@ -448,6 +448,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Ballistics.cs" t="Include" />
           <e p="CameraFollow.cs" t="Include" />
           <e p="CameraShakerEnemyDieEvent.cs" t="Include" />
           <e p="Collectables" t="Include">
@@ -476,6 +477,7 @@
             <e p="PatrolEnemyMovementInput.cs" t="Include" />
           </e>
           <e p="Installs" t="Include">
+            <e p="ExplodesInstaller.cs" t="Include" />
             <e p="HealthInstaller.cs" t="Include" />
             <e p="HeroMovementInstaller.cs" t="Include" />
             <e p="HeroWeaponInstaller.cs" t="Include" />
@@ -494,6 +496,7 @@
           </e>
           <e p="PatrolPoints.cs" t="Include" />
           <e p="Shell" t="Include">
+            <e p="BombShell.cs" t="Include" />
             <e p="LaserShell.cs" t="Include" />
             <e p="ShellBehaviour.cs" t="Include" />
           </e>
@@ -515,6 +518,7 @@
             <e p="VfxBehaviour.cs" t="Include" />
           </e>
           <e p="Weapon" t="Include">
+            <e p="BombGun.cs" t="Include" />
             <e p="LaserGun.cs" t="Include" />
             <e p="WeaponBehaviour.cs" t="Include" />
           </e>

@@ -20,7 +20,11 @@ namespace Cubechero.Inputs
         public Vector3 LookDirection()
         {
             var moveDirection = MoveDirection();
-            return moveDirection != Vector3.zero ? moveDirection : _locator.GetClosestDirection();
+            if (moveDirection != Vector3.zero) return moveDirection;
+
+            var closestTarget = _locator.GetClosestCollider();
+
+            return closestTarget != null ? _locator.GetClosestDirection() : Vector3.zero;
         }
     }
 }
