@@ -31,7 +31,8 @@ namespace Cubechero.Weapon
             var distance = offset.magnitude;
             var rad = Vector3.Angle(point.forward, offset.normalized) * Mathf.Deg2Rad;
             var speed = Ballistics.Speed(rad, distance);
-            
+            if(float.IsNaN(speed)) return;
+
             _factory.Create(point.forward * speed, point.position, point.rotation);
         }
     }

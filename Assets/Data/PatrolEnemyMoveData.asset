@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee31b28471b40b5a3d6674c7c961c53, type: 3}
   m_Name: PatrolEnemyMoveData
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
   rotateSpeed: 20
